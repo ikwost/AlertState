@@ -6,6 +6,8 @@ import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.ikwost.alertstate.domain.model.ApiRequest
+import com.ikwost.alertstate.domain.model.ApiResponse
 import com.ikwost.alertstate.domain.model.MessageBarState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers

@@ -16,9 +16,9 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.ikwost.alertstate.domain.model.MessageBarState
-import com.ikwost.alertstate.presentation.screen.component.MessageBar
+import com.ikwost.alertstate.ui.component.MessageBar
 import com.ikwost.alertstate.R
-import com.ikwost.alertstate.presentation.screen.component.GoogleButton
+import com.ikwost.alertstate.ui.component.GoogleButton
 
 @Composable
 fun LoginContent(

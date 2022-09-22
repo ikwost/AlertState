@@ -1,5 +1,8 @@
 package com.ikwost.alertstate.domain.repository
 
+import com.ikwost.alertstate.domain.model.ApiRequest
+import com.ikwost.alertstate.domain.model.ApiResponse
+import com.ikwost.alertstate.domain.model.UserUpdate
 import kotlinx.coroutines.flow.Flow
 
 interface Repository {

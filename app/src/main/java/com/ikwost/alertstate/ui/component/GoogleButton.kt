@@ -1,4 +1,4 @@
-package com.ikwost.alertstate.presentation.screen.component
+package com.ikwost.alertstate.ui.component
 
 import androidx.compose.animation.animateContentSize
 import androidx.compose.animation.core.LinearOutSlowInEasing
