@@ -8,6 +8,7 @@ import coil.annotation.ExperimentalCoilApi
 
 import com.ikwost.alertstate.navigation.Screen
 import com.ikwost.alertstate.presentation.screen.login.LoginScreen
+import com.ikwost.alertstate.presentation.screen.profile.ProfileScreen
 
 @ExperimentalCoilApi
 @Composable

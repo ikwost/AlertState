@@ -9,6 +9,8 @@ import androidx.lifecycle.viewModelScope
 import com.ikwost.alertstate.domain.model.ApiRequest
 import com.ikwost.alertstate.domain.model.ApiResponse
 import com.ikwost.alertstate.domain.model.MessageBarState
+import com.ikwost.alertstate.domain.repository.Repository
+import com.ikwost.alertstate.util.RequestState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
