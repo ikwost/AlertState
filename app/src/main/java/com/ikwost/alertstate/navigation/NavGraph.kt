@@ -5,7 +5,6 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import coil.annotation.ExperimentalCoilApi
-
 import com.ikwost.alertstate.navigation.Screen
 import com.ikwost.alertstate.presentation.screen.login.LoginScreen
 import com.ikwost.alertstate.presentation.screen.profile.ProfileScreen
