@@ -76,7 +76,8 @@ fun LoginScreen(
             is RequestState.Success -> {
                 val response = (apiResponse as RequestState.Success<ApiResponse>).data.success
                 if (response) {
-                    navigateToProfileScreen(navController = navController)
+                   // navigateToProfileScreen(navController = navController)
+                    navigateToMapScreen(navController = navController)
                 } else {
                     loginViewModel.saveSignedInState(signedIn = false)
                 }
@@ -90,6 +91,15 @@ private fun navigateToProfileScreen(
     navController: NavHostController
 ) {
     navController.navigate(route = Screen.Profile.route) {
+        popUpTo(route = Screen.Login.route) {
+            inclusive = true
+        }
+    }
+}
+private fun navigateToMapScreen(
+    navController: NavHostController
+) {
+    navController.navigate(route = Screen.Map.route) {
         popUpTo(route = Screen.Login.route) {
             inclusive = true
         }

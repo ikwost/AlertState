@@ -7,6 +7,7 @@ import androidx.navigation.compose.composable
 import coil.annotation.ExperimentalCoilApi
 import com.ikwost.alertstate.navigation.Screen
 import com.ikwost.alertstate.presentation.screen.login.LoginScreen
+import com.ikwost.alertstate.presentation.screen.map.MapScreen
 import com.ikwost.alertstate.presentation.screen.profile.ProfileScreen
 
 @ExperimentalCoilApi
@@ -22,8 +23,8 @@ fun SetupNavGraph(navController: NavHostController) {
         composable(route = Screen.Profile.route) {
             ProfileScreen(navController = navController)
         }
-        /*composable(route = Screen.Map.route) {
+        composable(route = Screen.Map.route) {
             MapScreen(navController = navController)
-        }*/
+        }
     }
 }
