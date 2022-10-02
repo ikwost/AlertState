@@ -11,4 +11,6 @@ object Constants {
     const val CLIENT_ID = BuildConfig.SERVER_CLIENT_ID
     const val MAX_LENGTH = 20
 
+    const val LOCATION_SERVICE_ID = "location"
+
 }

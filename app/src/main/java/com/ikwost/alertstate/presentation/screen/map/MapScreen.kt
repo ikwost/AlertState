@@ -12,15 +12,22 @@ import com.ikwost.alertstate.navigation.Screen
 
 @Composable
 fun MapScreen(navController: NavHostController) {
+
+
     Scaffold {
         Column {
             Text(
                 text = "Hello Map",
-
                 )
             Button(
-                onClick = { navController.navigate(route = Screen.Profile.route) }) {
-
+                onClick = { navController.navigate(route = Screen.Profile.route) },
+                ) {
+                Text("Profile Screen")
+            }
+            Button(
+                onClick = { },
+            ) {
+                Text("Location")
             }
         }
 
