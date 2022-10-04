@@ -7,10 +7,9 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import coil.annotation.ExperimentalCoilApi
 import com.google.accompanist.permissions.ExperimentalPermissionsApi
-import com.ikwost.alertstate.navigation.Screen
 import com.ikwost.alertstate.presentation.screen.login.LoginScreen
 import com.ikwost.alertstate.presentation.screen.map.MapScreen
-import com.ikwost.alertstate.presentation.screen.map.RequestMultiplePermissions
+import com.ikwost.alertstate.presentation.screen.map.Sample
 import com.ikwost.alertstate.presentation.screen.profile.ProfileScreen
 
 @OptIn(ExperimentalPermissionsApi::class)
@@ -29,12 +28,8 @@ fun SetupNavGraph(navController: NavHostController) {
         }
         composable(route = Screen.Map.route) {
             MapScreen(navController = navController)
-            RequestMultiplePermissions(
-                permissions = listOf(
-                    Manifest.permission.ACCESS_COARSE_LOCATION,
-                    Manifest.permission.ACCESS_FINE_LOCATION
-                )
-            )
+            Sample()
+
         }
     }
 }
