@@ -1,6 +1,5 @@
 package com.ikwost.alertstate.navigation
 
-import android.Manifest
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
@@ -8,6 +7,7 @@ import androidx.navigation.compose.composable
 import coil.annotation.ExperimentalCoilApi
 import com.google.accompanist.permissions.ExperimentalPermissionsApi
 import com.ikwost.alertstate.presentation.screen.login.LoginScreen
+import com.ikwost.alertstate.presentation.screen.map.FeaturesThatRequireLocationPermission
 import com.ikwost.alertstate.presentation.screen.map.MapScreen
 import com.ikwost.alertstate.presentation.screen.map.Sample
 import com.ikwost.alertstate.presentation.screen.profile.ProfileScreen
@@ -16,6 +16,8 @@ import com.ikwost.alertstate.presentation.screen.profile.ProfileScreen
 @ExperimentalCoilApi
 @Composable
 fun SetupNavGraph(navController: NavHostController) {
+
+
     NavHost(
         navController = navController,
         startDestination = Screen.Login.route
@@ -27,6 +29,7 @@ fun SetupNavGraph(navController: NavHostController) {
             ProfileScreen(navController = navController)
         }
         composable(route = Screen.Map.route) {
+            /* FeaturesThatRequireLocationPermission()*/
             MapScreen(navController = navController)
             Sample()
 

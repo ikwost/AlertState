@@ -76,8 +76,8 @@ fun LoginScreen(
             is RequestState.Success -> {
                 val response = (apiResponse as RequestState.Success<ApiResponse>).data.success
                 if (response) {
-                   // navigateToProfileScreen(navController = navController)
                     navigateToMapScreen(navController = navController)
+
                 } else {
                     loginViewModel.saveSignedInState(signedIn = false)
                 }

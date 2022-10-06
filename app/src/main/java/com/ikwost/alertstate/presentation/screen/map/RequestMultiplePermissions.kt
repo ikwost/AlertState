@@ -1,11 +1,13 @@
 package com.ikwost.alertstate.presentation.screen.map
 
+import android.Manifest
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.AlertDialog
 import androidx.compose.material.Button
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.*
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.TextStyle
@@ -13,6 +15,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.google.accompanist.permissions.*
+
 
 @ExperimentalPermissionsApi
 @Composable
@@ -155,12 +158,41 @@ fun Sample() {
             } else {
                 "Request permissions"
             }
-
             Text(text = textToShow)
             Spacer(modifier = Modifier.height(8.dp))
             Button(onClick = { locationPermissionsState.launchMultiplePermissionRequest() }) {
                 Text(buttonText)
             }
+        }
+    }
+}
+
+
+@OptIn(ExperimentalPermissionsApi::class)
+@Composable
+fun FeaturesThatRequireLocationPermission(
+
+) {
+    val locationPermissionsState = rememberMultiplePermissionsState(
+        listOf(
+            Manifest.permission.ACCESS_COARSE_LOCATION,
+            Manifest.permission.ACCESS_FINE_LOCATION
+        )
+    )
+    val allPermissionsRevoked =
+        locationPermissionsState.permissions.size ==
+                locationPermissionsState.revokedPermissions.size
+
+    when {
+        locationPermissionsState.allPermissionsGranted -> {
+
+        }
+        !allPermissionsRevoked || locationPermissionsState.shouldShowRationale -> {
+            locationPermissionsState.launchMultiplePermissionRequest()
+        }
+        else -> {
+
+
         }
     }
 }
