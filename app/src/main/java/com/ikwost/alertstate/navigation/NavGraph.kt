@@ -31,7 +31,7 @@ fun SetupNavGraph(navController: NavHostController) {
         composable(route = Screen.Map.route) {
             /* FeaturesThatRequireLocationPermission()*/
             MapScreen(navController = navController)
-            Sample()
+           // Sample()
 
         }
     }

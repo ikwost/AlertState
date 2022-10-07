@@ -53,7 +53,7 @@ class LocationService : Service() {
             getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
 
         locationClient
-            .getLocationUpdates(10000L)
+            .getLocationUpdates(5000L)
             .catch { e -> e.printStackTrace() } // TODO MessageBar
             .onEach { location ->
                 val lat = location.latitude.toString()
