@@ -5,6 +5,7 @@ import android.app.Service
 import android.content.Context
 import android.content.Intent
 import android.os.IBinder
+import android.util.Log
 import androidx.core.app.NotificationCompat
 import com.google.android.gms.location.LocationServices
 import com.ikwost.alertstate.R
@@ -60,8 +61,12 @@ class LocationService : Service() {
                 val long = location.longitude.toString()
                 val updateNotification = notification.setContentText("Location: ($lat,$long)")
                 notificationManager.notify(1, updateNotification.build())
+                Log.d("LOCATION INFO", "Location: ($lat, $long)")
+                //TODO not working on 24 api, need to fix
             }
             .launchIn(serviceScope)
+
+
 
         startForeground(1, notification.build()) //TODO id to Constant
 
