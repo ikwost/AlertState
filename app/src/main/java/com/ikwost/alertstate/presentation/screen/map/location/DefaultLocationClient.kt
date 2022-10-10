@@ -5,10 +5,7 @@ import android.location.Location
 import android.location.LocationManager
 import android.os.Looper
 import android.util.Log
-import com.google.android.gms.location.FusedLocationProviderClient
-import com.google.android.gms.location.LocationCallback
-import com.google.android.gms.location.LocationRequest
-import com.google.android.gms.location.LocationResult
+import com.google.android.gms.location.*
 import com.ikwost.alertstate.util.hasLocationPermissions
 import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.Flow
@@ -38,12 +35,13 @@ class DefaultLocationClient(
             val request = LocationRequest.create()
                 .setInterval(interval)
                 .setFastestInterval(interval)
+                .setPriority(Priority.PRIORITY_HIGH_ACCURACY)
 
             val locationCallback = object : LocationCallback() {
                 override fun onLocationResult(result: LocationResult) {
                     super.onLocationResult(result)
                     result.locations.lastOrNull()?.let { location ->
-                        Log.d("LOCATION INFO 2", "Location: (${location.latitude} ${location.longitude})")
+                        Log.d("LOCATION INFO ", "Location: (${location.latitude} ${location.longitude})")
                         launch { send(location) }
                     }
                 }

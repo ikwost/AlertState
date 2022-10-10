@@ -61,7 +61,7 @@ class LocationService : Service() {
                 val long = location.longitude.toString()
                 val updateNotification = notification.setContentText("Location: ($lat,$long)")
                 notificationManager.notify(1, updateNotification.build())
-                Log.d("LOCATION INFO", "Location: ($lat, $long)")
+
                 //TODO not working on 24 api, need to fix
             }
             .launchIn(serviceScope)
