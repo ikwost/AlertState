@@ -2,6 +2,7 @@ package com.ikwost.alertstate.data.remote
 
 import com.ikwost.alertstate.domain.model.ApiRequest
 import com.ikwost.alertstate.domain.model.ApiResponse
+import com.ikwost.alertstate.domain.model.UserLocation
 import com.ikwost.alertstate.domain.model.UserUpdate
 import retrofit2.http.*
 
@@ -25,5 +26,11 @@ interface KtorApi {
 
     @GET("/sign_out")
     suspend fun clearSession(): ApiResponse
+
+    @GET("/locations")
+    suspend fun getAllLocations(): UserLocation
+
+
+
 
 }

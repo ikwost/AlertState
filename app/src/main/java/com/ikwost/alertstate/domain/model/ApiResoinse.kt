@@ -8,6 +8,8 @@ data class ApiResponse(
     val success: Boolean,
     val user: User? = null,
     val message: String? = null,
+    val locations: List<UserLocation>? = null,
     @Transient
     val error: Exception? = null
 )
+//add val data
