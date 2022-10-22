@@ -28,7 +28,7 @@ interface KtorApi {
     suspend fun clearSession(): ApiResponse
 
     @GET("/locations")
-    suspend fun getAllLocations(): UserLocation
+    suspend fun getAllLocations(): ApiResponse
 
 
 

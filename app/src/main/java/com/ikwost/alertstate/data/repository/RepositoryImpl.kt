@@ -60,4 +60,12 @@ class RepositoryImpl @Inject constructor(
             ApiResponse(success = false, error = e)
         }
     }
+
+    override suspend fun getAllLocations(): ApiResponse {
+        return try {
+            ktorApi.getAllLocations()
+        } catch (e: Exception) {
+            ApiResponse(success = false, error = e, locations = emptyList())
+        }
+    }
 }

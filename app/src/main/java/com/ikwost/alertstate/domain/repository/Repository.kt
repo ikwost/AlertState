@@ -13,4 +13,6 @@ interface Repository {
     suspend fun updateUser(userUpdate: UserUpdate): ApiResponse
     suspend fun deleteUser(): ApiResponse
     suspend fun clearSession(): ApiResponse
+    suspend fun getAllLocations(): ApiResponse
+
 }
