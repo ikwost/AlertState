@@ -2,11 +2,10 @@ package com.ikwost.alertstate.data.remote
 
 import com.ikwost.alertstate.domain.model.ApiRequest
 import com.ikwost.alertstate.domain.model.ApiResponse
-import com.ikwost.alertstate.domain.model.UserLocation
 import com.ikwost.alertstate.domain.model.UserUpdate
 import retrofit2.http.*
 
-interface KtorApi {
+interface KtorApiRetrofit : MapSocketService {
 
     @POST("/token_verification")
     suspend fun verifyTokenOnBackend(
@@ -29,7 +28,6 @@ interface KtorApi {
 
     @GET("/locations")
     suspend fun getAllLocations(): ApiResponse
-
 
 
 

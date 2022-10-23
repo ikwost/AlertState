@@ -1,6 +1,6 @@
 package com.ikwost.alertstate.di
 
-import com.ikwost.alertstate.data.remote.KtorApi
+import com.ikwost.alertstate.data.remote.KtorApiRetrofit
 import com.ikwost.alertstate.util.Constants.BASE_URL
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
 import dagger.Module
@@ -52,8 +52,8 @@ object NetworkModule {
 
     @Provides
     @Singleton
-    fun provideKtorApi(retrofit: Retrofit): KtorApi {
-        return retrofit.create(KtorApi::class.java)
+    fun provideKtorApi(retrofit: Retrofit): KtorApiRetrofit {
+        return retrofit.create(KtorApiRetrofit::class.java)
     }
 
 }

@@ -1,17 +1,19 @@
 package com.ikwost.alertstate.data.repository
 
-import com.ikwost.alertstate.data.remote.KtorApi
+import com.ikwost.alertstate.data.remote.KtorApiRetrofit
 import com.ikwost.alertstate.domain.model.ApiRequest
 import com.ikwost.alertstate.domain.model.ApiResponse
+import com.ikwost.alertstate.domain.model.UserLocation
 import com.ikwost.alertstate.domain.model.UserUpdate
 import com.ikwost.alertstate.domain.repository.DataStoreOperations
 import com.ikwost.alertstate.domain.repository.Repository
+import com.ikwost.alertstate.util.RequestState
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
 class RepositoryImpl @Inject constructor(
     private val dataStoreOperations: DataStoreOperations,
-    private val ktorApi: KtorApi
+    private val ktorApiRetrofit: KtorApiRetrofit
 ) : Repository {
     override suspend fun saveSignedInState(signedIn: Boolean) {
         dataStoreOperations.saveSignedInState(signedIn = signedIn)
@@ -23,7 +25,7 @@ class RepositoryImpl @Inject constructor(
 
     override suspend fun verifyTokenOnBackend(request: ApiRequest): ApiResponse {
         return try {
-            ktorApi.verifyTokenOnBackend(request = request)
+            ktorApiRetrofit.verifyTokenOnBackend(request = request)
         } catch (e: Exception) {
             ApiResponse(success = false, error = e)
         }
@@ -31,7 +33,7 @@ class RepositoryImpl @Inject constructor(
 
     override suspend fun getUserInfo(): ApiResponse {
         return try {
-            ktorApi.getUserInfo()
+            ktorApiRetrofit.getUserInfo()
         } catch (e: Exception) {
             ApiResponse(success = false, error = e)
         }
@@ -39,7 +41,7 @@ class RepositoryImpl @Inject constructor(
 
     override suspend fun updateUser(userUpdate: UserUpdate): ApiResponse {
         return try {
-            ktorApi.updateUser(userUpdate = userUpdate)
+            ktorApiRetrofit.updateUser(userUpdate = userUpdate)
         } catch (e: Exception) {
             ApiResponse(success = false, error = e)
         }
@@ -47,7 +49,7 @@ class RepositoryImpl @Inject constructor(
 
     override suspend fun deleteUser(): ApiResponse {
         return try {
-            ktorApi.deleteUser()
+            ktorApiRetrofit.deleteUser()
         } catch (e: Exception) {
             ApiResponse(success = false, error = e)
         }
@@ -55,7 +57,7 @@ class RepositoryImpl @Inject constructor(
 
     override suspend fun clearSession(): ApiResponse {
         return try {
-            ktorApi.clearSession()
+            ktorApiRetrofit.clearSession()
         } catch (e: Exception) {
             ApiResponse(success = false, error = e)
         }
@@ -63,9 +65,25 @@ class RepositoryImpl @Inject constructor(
 
     override suspend fun getAllLocations(): ApiResponse {
         return try {
-            ktorApi.getAllLocations()
+            ktorApiRetrofit.getAllLocations()
         } catch (e: Exception) {
             ApiResponse(success = false, error = e, locations = emptyList())
         }
+    }
+
+    override suspend fun initSocketSession(username: String): RequestState<Unit> {
+        TODO("Not yet implemented")
+    }
+
+    override suspend fun sendLocation(userLocation: UserLocation) {
+        TODO("Not yet implemented")
+    }
+
+    override fun observeLocations(): Flow<UserLocation> {
+        TODO("Not yet implemented")
+    }
+
+    override suspend fun closeSocketSession() {
+        TODO("Not yet implemented")
     }
 }

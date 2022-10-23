@@ -5,7 +5,7 @@ import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.PreferenceDataStoreFactory
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.preferencesDataStoreFile
-import com.ikwost.alertstate.data.remote.KtorApi
+import com.ikwost.alertstate.data.remote.KtorApiRetrofit
 import com.ikwost.alertstate.data.repository.DataStoreOperationsImpl
 import com.ikwost.alertstate.data.repository.RepositoryImpl
 import com.ikwost.alertstate.domain.repository.DataStoreOperations
@@ -44,11 +44,11 @@ object RepositoryModule {
     @Singleton
     fun provideRepository(
         dataStoreOperations: DataStoreOperations,
-        ktorApi: KtorApi
+        ktorApiRetrofit: KtorApiRetrofit
     ): Repository {
         return RepositoryImpl(
             dataStoreOperations = dataStoreOperations,
-            ktorApi = ktorApi
+            ktorApi = ktorApiRetrofit
         )
     }
 
