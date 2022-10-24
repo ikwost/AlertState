@@ -48,7 +48,7 @@ object RepositoryModule {
     ): Repository {
         return RepositoryImpl(
             dataStoreOperations = dataStoreOperations,
-            ktorApi = ktorApiRetrofit
+            ktorApiRetrofit = ktorApiRetrofit
         )
     }
 

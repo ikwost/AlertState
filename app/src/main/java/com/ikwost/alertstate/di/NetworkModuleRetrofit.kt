@@ -21,7 +21,7 @@ import javax.inject.Singleton
 @ExperimentalSerializationApi
 @Module
 @InstallIn(SingletonComponent::class)
-object NetworkModule {
+object NetworkModuleRetrofit {
 
     @Provides
     @Singleton
