@@ -71,11 +71,11 @@ class RepositoryImpl @Inject constructor(
         }
     }
 
-    override suspend fun initSocketSession(username: String): RequestState<Unit> {
+    override suspend fun initSocketSession(username: String): ApiResponse {
         TODO("Not yet implemented")
     }
 
-    override suspend fun sendLocation(userLocation: UserLocation) {
+    override suspend fun sendLocation(userLocation: UserLocation): ApiResponse {
         TODO("Not yet implemented")
     }
 
@@ -83,7 +83,7 @@ class RepositoryImpl @Inject constructor(
         TODO("Not yet implemented")
     }
 
-    override suspend fun closeSocketSession() {
+    override suspend fun closeSocketSession(): ApiResponse {
         TODO("Not yet implemented")
     }
 }

@@ -29,6 +29,4 @@ interface KtorApiRetrofit : MapSocketService {
     @GET("/locations")
     suspend fun getAllLocations(): ApiResponse
 
-
-
 }

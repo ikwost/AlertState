@@ -1,25 +1,53 @@
 package com.ikwost.alertstate.data.repository
 
+import com.google.android.gms.common.api.Api
 import com.ikwost.alertstate.data.remote.MapSocketService
+import com.ikwost.alertstate.domain.model.ApiResponse
 import com.ikwost.alertstate.domain.model.UserLocation
 import com.ikwost.alertstate.util.RequestState
 import io.ktor.client.*
+import io.ktor.client.plugins.websocket.*
+import io.ktor.client.request.*
+import io.ktor.websocket.*
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.isActive
 
 class MapSocketServiceImpl(private val client: HttpClient) : MapSocketService {
-    override suspend fun initSocketSession(username: String): RequestState<Unit> {
-        TODO("Not yet implemented")
+
+    private var socket: WebSocketSession? = null
+
+    override suspend fun initSocketSession(username: String): ApiResponse {
+        return try {
+            socket = client.webSocketSession {
+                url(MapSocketService.Endpoints.MapSocket.url)
+            }
+            if (socket?.isActive == true) {
+                ApiResponse(success = true)
+            } else {
+                ApiResponse(success = false)
+            }
+
+        } catch (e: Exception) {
+            ApiResponse(success = false, error = e)
+        }
     }
 
-    override suspend fun sendLocation(userLocation: UserLocation) {
-        TODO("Not yet implemented")
+    override suspend fun sendLocation(userLocation: UserLocation): ApiResponse {
+        return try {
+/*
+            socket?
+*/
+            ApiResponse(success = true)
+        } catch (e: Exception) {
+            ApiResponse(success = false, error = e)
+        }
     }
 
     override fun observeLocations(): Flow<UserLocation> {
         TODO("Not yet implemented")
     }
 
-    override suspend fun closeSocketSession() {
+    override suspend fun closeSocketSession(): ApiResponse {
         TODO("Not yet implemented")
     }
 }

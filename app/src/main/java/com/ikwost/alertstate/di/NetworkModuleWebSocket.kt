@@ -12,6 +12,8 @@ import io.ktor.client.plugins.json.*
 import io.ktor.client.plugins.kotlinx.serializer.*
 import io.ktor.client.plugins.logging.*
 import io.ktor.client.plugins.websocket.*
+import io.ktor.serialization.kotlinx.*
+import kotlinx.serialization.json.Json
 import javax.inject.Singleton
 
 @Module
@@ -23,7 +25,9 @@ object NetworkModuleWebSocket {
     fun provideHttpClient(): HttpClient {
         return HttpClient(CIO) {
             install(Logging)
-            install(WebSockets)
+            install(WebSockets) {
+                contentConverter = KotlinxWebsocketSerializationConverter(Json)
+            }
             install(JsonPlugin) {
                 serializer = KotlinxSerializer()
             }
@@ -31,10 +35,9 @@ object NetworkModuleWebSocket {
     }
 
 
-
- @Provides
- @Singleton
- fun provideChatSocketService(client: HttpClient): MapSocketService {
-     return MapSocketServiceImpl(client)
- }
+    @Provides
+    @Singleton
+    fun provideChatSocketService(client: HttpClient): MapSocketService {
+        return MapSocketServiceImpl(client)
+    }
 }

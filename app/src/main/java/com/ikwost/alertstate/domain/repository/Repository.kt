@@ -16,9 +16,9 @@ interface Repository {
     suspend fun deleteUser(): ApiResponse
     suspend fun clearSession(): ApiResponse
     suspend fun getAllLocations(): ApiResponse
-    suspend fun initSocketSession(username: String): RequestState<Unit>
-    suspend fun sendLocation(userLocation: UserLocation)
+    suspend fun initSocketSession(username: String): ApiResponse
+    suspend fun sendLocation(userLocation: UserLocation): ApiResponse
     fun observeLocations(): Flow<UserLocation>
-    suspend fun closeSocketSession()
+    suspend fun closeSocketSession(): ApiResponse
 
 }
