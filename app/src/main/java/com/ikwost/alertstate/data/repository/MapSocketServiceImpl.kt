@@ -34,9 +34,9 @@ class MapSocketServiceImpl(private val client: HttpClient) : MapSocketService {
 
     override suspend fun sendLocation(userLocation: UserLocation): ApiResponse {
         return try {
-/*
-            socket?
-*/
+
+          //  socket?.send(Frame)
+
             ApiResponse(success = true)
         } catch (e: Exception) {
             ApiResponse(success = false, error = e)
