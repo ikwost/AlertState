@@ -14,13 +14,14 @@ import kotlinx.coroutines.isActive
 
 class MapSocketServiceImpl(private val client: HttpClient) : MapSocketService {
 
-    private var socket: WebSocketSession? = null
+    private var socket: DefaultClientWebSocketSession? = null
 
     override suspend fun initSocketSession(username: String): ApiResponse {
         return try {
-            socket = client.webSocketSession {
-                url(MapSocketService.Endpoints.MapSocket.url)
+            client.webSocket(urlString = MapSocketService.Endpoints.MapSocket.url) {
+                socket = this
             }
+
             if (socket?.isActive == true) {
                 ApiResponse(success = true)
             } else {
@@ -34,9 +35,7 @@ class MapSocketServiceImpl(private val client: HttpClient) : MapSocketService {
 
     override suspend fun sendLocation(userLocation: UserLocation): ApiResponse {
         return try {
-
-          //  socket?.send(Frame)
-
+            socket?.sendSerialized(userLocation)
             ApiResponse(success = true)
         } catch (e: Exception) {
             ApiResponse(success = false, error = e)
