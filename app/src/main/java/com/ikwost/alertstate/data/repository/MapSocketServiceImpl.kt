@@ -9,7 +9,7 @@ import io.ktor.client.*
 import io.ktor.client.plugins.websocket.*
 import io.ktor.client.request.*
 import io.ktor.websocket.*
-import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.isActive
 
 class MapSocketServiceImpl(private val client: HttpClient) : MapSocketService {
@@ -21,13 +21,11 @@ class MapSocketServiceImpl(private val client: HttpClient) : MapSocketService {
             client.webSocket(urlString = MapSocketService.Endpoints.MapSocket.url) {
                 socket = this
             }
-
             if (socket?.isActive == true) {
                 ApiResponse(success = true)
             } else {
                 ApiResponse(success = false)
             }
-
         } catch (e: Exception) {
             ApiResponse(success = false, error = e)
         }
@@ -43,7 +41,24 @@ class MapSocketServiceImpl(private val client: HttpClient) : MapSocketService {
     }
 
     override fun observeLocations(): Flow<UserLocation> {
-        TODO("Not yet implemented")
+        return try {
+            /*    socket?.incoming
+                    ?.receiveAsFlow()
+                    ?.map {
+                        val userLocation:UserLocation =
+
+                    }*/
+
+            flow {
+                while (true)
+                    socket?.receiveDeserialized<UserLocation>()
+            }
+
+
+        } catch (e: Exception) {
+            ApiResponse(success = false, error = e)
+            emptyFlow()
+        }
     }
 
     override suspend fun closeSocketSession(): ApiResponse {
