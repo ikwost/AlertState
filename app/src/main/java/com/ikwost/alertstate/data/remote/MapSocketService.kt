@@ -14,7 +14,7 @@ interface MapSocketService {
 
     fun observeLocations(): Flow<UserLocation>
 
-    suspend fun closeSocketSession(): ApiResponse
+    suspend fun closeSocketSession():ApiResponse
 
     sealed class Endpoints(val url: String) {
         object MapSocket : Endpoints("$BASE_URL/map-socket")

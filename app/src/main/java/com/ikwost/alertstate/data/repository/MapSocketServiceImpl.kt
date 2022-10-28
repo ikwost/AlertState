@@ -62,6 +62,11 @@ class MapSocketServiceImpl(private val client: HttpClient) : MapSocketService {
     }
 
     override suspend fun closeSocketSession(): ApiResponse {
-        TODO("Not yet implemented")
+        return try {
+            socket?.close()
+            ApiResponse(success = true)
+        } catch (e: Exception) {
+            ApiResponse(success = false, error = e)
+        }
     }
 }

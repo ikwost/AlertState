@@ -37,7 +37,7 @@ object NetworkModuleWebSocket {
 
     @Provides
     @Singleton
-    fun provideChatSocketService(client: HttpClient): MapSocketService {
+    fun provideMapSocketService(client: HttpClient): MapSocketService {
         return MapSocketServiceImpl(client)
     }
 }

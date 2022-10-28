@@ -22,7 +22,6 @@ class MapViewModel @Inject constructor(
 ) : ViewModel() {
 
 
-
     private val _apiResponse: MutableState<RequestState<ApiResponse>> =
         mutableStateOf(RequestState.Idle)
     val apiResponse: State<RequestState<ApiResponse>> = _apiResponse
@@ -30,7 +29,7 @@ class MapViewModel @Inject constructor(
     private val _messageBarState: MutableState<MessageBarState> = mutableStateOf(MessageBarState())
     val messageBarState: State<MessageBarState> = _messageBarState
 
-    private fun getAllLocation() {
+    fun getAllLocation() {
         _apiResponse.value = RequestState.Loading
         viewModelScope.launch {
             try {
@@ -43,12 +42,31 @@ class MapViewModel @Inject constructor(
                     error = response.error
                 )
                 if (response.locations != null) {
-                    Log.d("LOCATION INFO ", "Location: ${response.locations})")                }
+                    Log.d("LOCATION INFO ", "Location: ${response.locations})")
+                }
             } catch (e: Exception) {
                 _apiResponse.value = RequestState.Error(e)
                 _messageBarState.value = MessageBarState(error = e)
             }
         }
+    }
+
+    fun senLocation() {
+        viewModelScope.launch {
+            repository.sendLocation()
+        }
+    }
+
+
+    private fun disconnect() {
+        viewModelScope.launch {
+            repository.closeSocketSession()
+        }
+    }
+
+    override fun onCleared() {
+        super.onCleared()
+        disconnect()
     }
 }
 
