@@ -51,11 +51,12 @@ class MapViewModel @Inject constructor(
         }
     }
 
-    fun senLocation() {
+  /*  fun sendLocation() {
         viewModelScope.launch {
             repository.sendLocation()
+
         }
-    }
+    }*/
 
 
     private fun disconnect() {

@@ -14,7 +14,7 @@ import androidx.navigation.NavHostController
 import com.google.accompanist.permissions.ExperimentalPermissionsApi
 import com.google.accompanist.permissions.rememberMultiplePermissionsState
 import com.ikwost.alertstate.navigation.Screen
-import com.ikwost.alertstate.presentation.screen.map.location.LocationService
+import com.ikwost.alertstate.services.LocationService
 
 @OptIn(ExperimentalPermissionsApi::class)
 @Composable

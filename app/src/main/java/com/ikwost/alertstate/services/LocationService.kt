@@ -1,15 +1,18 @@
-package com.ikwost.alertstate.presentation.screen.map.location
+package com.ikwost.alertstate.services
 
 import android.app.NotificationManager
 import android.app.Service
 import android.content.Context
 import android.content.Intent
 import android.os.IBinder
-import android.util.Log
+import androidx.compose.runtime.State
+import androidx.compose.runtime.mutableStateOf
 import androidx.core.app.NotificationCompat
 import com.google.android.gms.location.LocationServices
 import com.ikwost.alertstate.R
-import com.ikwost.alertstate.util.Constants
+import com.ikwost.alertstate.domain.model.UserLocation
+import com.ikwost.alertstate.presentation.screen.map.location.DefaultLocationClient
+import com.ikwost.alertstate.presentation.screen.map.location.LocationClient
 import com.ikwost.alertstate.util.Constants.LOCATION_SERVICE_ID
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -18,12 +21,16 @@ import kotlinx.coroutines.cancel
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
+import javax.inject.Inject
 
 class LocationService : Service() {
     private val serviceScope = CoroutineScope(SupervisorJob() + Dispatchers.IO)
 
-    //TODO use DI
-    private lateinit var locationClient: LocationClient
+    @Inject
+    lateinit var locationClient: LocationClient
+
+    private val _userLocation = mutableStateOf(UserLocation(lat = 0, lng = 0, userId = ""))
+    val userLocation: State<UserLocation> = _userLocation
 
 
     override fun onCreate() {

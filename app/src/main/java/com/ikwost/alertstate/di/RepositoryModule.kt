@@ -6,6 +6,7 @@ import androidx.datastore.preferences.core.PreferenceDataStoreFactory
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.preferencesDataStoreFile
 import com.ikwost.alertstate.data.remote.KtorApiRetrofit
+import com.ikwost.alertstate.data.remote.MapSocketService
 import com.ikwost.alertstate.data.repository.DataStoreOperationsImpl
 import com.ikwost.alertstate.data.repository.RepositoryImpl
 import com.ikwost.alertstate.domain.repository.DataStoreOperations
@@ -44,11 +45,13 @@ object RepositoryModule {
     @Singleton
     fun provideRepository(
         dataStoreOperations: DataStoreOperations,
-        ktorApiRetrofit: KtorApiRetrofit
+        ktorApiRetrofit: KtorApiRetrofit,
+        mapSocketService: MapSocketService
     ): Repository {
         return RepositoryImpl(
             dataStoreOperations = dataStoreOperations,
-            ktorApiRetrofit = ktorApiRetrofit
+            ktorApiRetrofit = ktorApiRetrofit,
+            mapSocketService = mapSocketService
         )
     }
 

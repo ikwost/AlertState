@@ -11,11 +11,14 @@ import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.callbackFlow
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class DefaultLocationClient(
+class DefaultLocationClient @Inject constructor(
     private val context: Context,
     private val client: FusedLocationProviderClient
 ) : LocationClient {
+
+
     override fun getLocationUpdates(interval: Long): Flow<Location> {
         return callbackFlow {
             if (!context.hasLocationPermissions()) {
@@ -41,7 +44,10 @@ class DefaultLocationClient(
                 override fun onLocationResult(result: LocationResult) {
                     super.onLocationResult(result)
                     result.locations.lastOrNull()?.let { location ->
-                        Log.d("LOCATION INFO ", "Location: (${location.latitude} ${location.longitude})")
+                        Log.d(
+                            "LOCATION INFO ",
+                            "Location: (${location.latitude} ${location.longitude})"
+                        )
                         launch { send(location) }
                     }
                 }
