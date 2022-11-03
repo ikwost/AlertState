@@ -19,6 +19,7 @@ class DataStoreOperationsImpl @Inject constructor(
 
     private object PreferencesKey {
         val signedInKey = booleanPreferencesKey(name = PREFERENCES_SIGNED_IN_KEY)
+
     }
 
     override suspend fun saveSignedInState(signedIn: Boolean) {

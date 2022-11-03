@@ -83,6 +83,8 @@ class LocationService : Service() {
         stopSelf()
     }
 
+
+
     override fun onDestroy() {
         super.onDestroy()
         serviceScope.cancel()
